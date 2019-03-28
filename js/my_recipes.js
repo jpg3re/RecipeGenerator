@@ -80,13 +80,14 @@ function populateInstructionList(recipe){
 function loadTabs(){
     var ul = document.getElementById("recipes");
     var items = ul.getElementsByTagName("li");
+    var tab= (index,name) => {return document.getElementById("recipe"+index).innerHTML=name}
     for (var i = 1; i < items.length+1; ++i) {
         if(i==1)
-            document.getElementById("recipe"+i).innerHTML=recipe1.name
+            tab1=tab(i,recipe1.name)
         else if(i==2)
-            document.getElementById("recipe"+i).innerHTML=recipe2.name
+            tab2=tab(i,recipe2.name)
         else
-            document.getElementById("recipe"+i).innerHTML=recipe3.name
+            tab3=tab(i,recipe3.name)
     }
 }
 function clearList(id){

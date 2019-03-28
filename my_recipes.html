@@ -1,7 +1,13 @@
-<script src="js/nav.js"></script>
-<body onload="loadPage()"></body>
+<!-- Jack Girerd jpg3re -->
+
+<head>
+
 <script src="js/create_recipe.js"></script>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<script src="js/nav.js"></script>
+<body onload="loadPage()"></body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Recipe Generator</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +27,7 @@
       </ul>
     </div>
   </nav>
-
+        
 <ul class="nav nav-tabs" id="recipes">
         <li class="nav-item">
           <a class="nav-link active" id= "recipe1" onclick=changeTab(this.id)>Recipe 1</a>
@@ -33,7 +39,10 @@
           <a class="nav-link" id="recipe3" onclick=changeTab(this.id)>Recipe 3</a>
         </li>
 </ul>
-    <h2 id="recipe_name">
+<div class="container" > 
+    <div class="row"> 
+        <div class="col">
+    <h2 id="recipe_name" align="center">
       Recipe Name
     </h2>
     <h4>
@@ -49,4 +58,17 @@
   <ol class="list-group" id="instructions">
          
   </ol>
+  </div>
+  </div>
+  </div>
+  <br>
+  <div class="container" > 
+      <div class="row"> 
+          
+          <div class="col">
+              <button type="button" class="btn btn-primary btn-lg">Edit Recipe</button>
+          </div>
+          <div class="col"> </div>
+        </div>
+  </div>
     <script src="js/my_recipes.js"></script>
