@@ -8,7 +8,7 @@ function updateNavBar(){
     if(sPage=="index.html"){
         document.getElementById("home_nav").classList.add('active');
     }
-    else if(sPage=="create_recipe.html"){
+    else if(sPage=="create_recipe.php"){
         document.getElementById("create_nav").classList.add('active');
     }
     else{

@@ -20,6 +20,6 @@ function addInstruction(){
         entry.className="list-group-item";
         entry.appendChild(document.createTextNode(instruction));
         instruction_list.appendChild(entry);
-        element.value=""
+        //element.value=""
     }
 }

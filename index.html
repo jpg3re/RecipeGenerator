@@ -17,7 +17,7 @@
           <a class="nav-link" id="home_nav" href="index.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="create_nav" href="create_recipe.html">Create Recipe</a>
+          <a class="nav-link" id="create_nav" href="create_recipe.php">Create Recipe</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="recipes_nav" href="my_recipes.html">My Recipes</a>
@@ -41,6 +41,14 @@
     </div>
   </div>
   <br>
+
+  <form action="php/test.php" method="post">
+    <input type="text" name="title" placeholder="title" />
+
+    <input type="text" name="user" placeholder="user" />
+    <input type="submit" name="submit" />
+  </form>
+
   <div class="container" > 
       <div class="row"> 
           
