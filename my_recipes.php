@@ -22,7 +22,7 @@
           <a class="nav-link" id="create_nav" href="create_recipe.php">Create Recipe</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" id="recipes_nav" href="my_recipes.html">My Recipes</a>
+          <a class="nav-link active" id="recipes_nav" href="my_recipes.php">My Recipes</a>
         </li>
       </ul>
     </div>

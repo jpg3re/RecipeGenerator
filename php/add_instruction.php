@@ -8,11 +8,11 @@
     $user=$_SESSION["user"];
 
     $_SESSION["instructions"][]=$instruction;
-    $query ="INSERT INTO Instructions (ingredient,recipe_id,user) VALUES (:ingredient, :recipe_id,:user)";
+    $query ="INSERT INTO Instructions (instruction,recipe_id,user) VALUES (:instruction, :recipe_id,:user)";
 
     $statement=$db->prepare($query);
     $statement->bindValue(':recipe_id',$recipe_id);
-    $statement->bindValue(':ingredient',$ingredient);
+    $statement->bindValue(':instruction',$instruction);
     $statement->bindValue(':user',$user);
     $statement->execute();
     $statement->closeCursor();
