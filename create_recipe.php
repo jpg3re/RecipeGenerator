@@ -1,6 +1,21 @@
 <!-- Jack Girerd jpg3re -->
 <?php
-session_start();
+  session_start();
+  include('php/list.php');
+if (isset($_SESSION['recipe'])) {
+  #$_SESSION['recipe'] = "Enter Recipe Name";
+  #$_SESSION['user'] = "Enter username";
+}else{
+  $_SESSION['recipe'] = "";
+  $_SESSION['user'] = "";
+  $_SESSION['placeholder']="";
+  $ingredient_array=array();
+  $_SESSION['ingredients']=$ingredient_array;
+
+  $instruction_array=array();
+  $_SESSION['instructions']=$instruction_array;
+
+}
 ?>
 <script src="js/nav.js"></script>
 <body onload="updateNavBar()"></body>
@@ -34,55 +49,74 @@ session_start();
     <div class="row">
       <div class="col">
           <form action="php/add_ingredient.php" method="post">
-            <div class="form-group">
+              <div class="form-group">
                 <h4>
                   Recipe Title:
                 </h4>
-                <input class="form-control" id="title" name="title" placeholder="Example Title">
+                <input class="form-control" id="title" name="title" placeholder="Recipe Title" value="<?php echo $_SESSION['recipe'];?>">
                 <h4>
                     User:
-                  </h4>
-                  <input class="form-control" id="user" name="user" placeholder="Username">
-            </div>
-        <h4>
-            Ingredients
-        </h4>
-        <ol class="list-group" id="ingredients">
-                
-        </ol>
-        <div class="input-group mb-3" >
-          
-                <input name="ingredient_input" id="ingredient_input" type="text" class="form-control" placeholder="Ingredient" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                </h4>
+                <input class="form-control" id="user" value="<?php echo $_SESSION['user'];?>" name="user" placeholder="Username">
+
+              </div>
+              <h4>
+                Ingredients
+              </h4>
+              <ol class="list-group" id="ingredients">
+                  <?php
+                    $array=$_SESSION['ingredients'];
+                    for($i=0;$i<sizeof($array);$i++){
+                       echo "<li class=list-group-item>";
+                       echo $array[$i];
+                       echo "</li>";
+                      }
+                  ?>
+              </ol>
+              <div class="input-group mb-3" >
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" type="button" onclick="addIngredient()">Add</button>
+                <input class="form-control" id="ing" name="ing" placeholder="Ingredient" value="<?php echo $_SESSION['placeholder'];?>">
+                
                 </div>
-                <input type="submit" name="submit" onclick="addIngredient()"/>
+                <input class="btn btn-outline-secondary" type="submit" name="submit" />
+              </div>
           </form>
-        </div>
         </div>
         <div class="col">
             <h4>
                     Instructions
             </h4>
             <div class="list-group">
-                    <ol class="list-group" id="instructions">
-                    </ol>
+            <ol class="list-group" id="instructions">
+                  <?php
+                    $array=$_SESSION['instructions'];
+                    for($i=0;$i<sizeof($array);$i++){
+                       echo "<li class=list-group-item>";
+                       echo $array[$i];
+                       echo "</li>";
+                      }
+                  ?>
+              </ol>
             </div>
             <div class="input-group mb-3">
-                <input id="instruction_input"type="text" class="form-control" placeholder="Instruction" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <form action="php/add_instruction.php" method="post">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" onclick="addInstruction()">Add</button>
+                  <input name="instruction_input"type="text" class="form-control" placeholder="Instruction" value="<?php echo $_SESSION['placeholder'];?>">
+
+                  <input class="btn btn-outline-secondary" type="submit" name="submit" />
                 </div>
+            </form>
             </div>
         </div>
     </div>
 </div>
 <div class="container" > 
     <div class="row"> 
-        
-        
+      <form action="php/add_recipe.php" >
+        <input type="submit" name="submit"/>
         <div class="col"> </div>
-      </div>
+      </form>
+    </div>
 </div>
 
 

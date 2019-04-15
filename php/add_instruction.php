@@ -1,20 +1,24 @@
 <?php 
-
+    
+    session_start();
     require('db-connect.php');
     if(isset( $_POST['submit'] )){
-    $recipe_user=$_REQUEST['user'];
-    $recipe_title=$_REQUEST['title'];
-    $number_query="SELECT user WHERE user=$recipe_user";
-    #$num_rows = mysql_num_rows($number_query);
-    $query ="INSERT INTO recipe_list (user, title) VALUES (:recipe_user, :recipe_title)";
+    $instruction=$_REQUEST['instruction_input'];
+    $recipe_id=$_SESSION["recipe"];
+    $user=$_SESSION["user"];
+
+    $_SESSION["instructions"][]=$instruction;
+    $query ="INSERT INTO Instructions (ingredient,recipe_id,user) VALUES (:ingredient, :recipe_id,:user)";
 
     $statement=$db->prepare($query);
-    $statement->bindValue(':recipe_user',$recipe_user);
-    $statement->bindValue(':recipe_title',$recipe_title);
+    $statement->bindValue(':recipe_id',$recipe_id);
+    $statement->bindValue(':ingredient',$ingredient);
+    $statement->bindValue(':user',$user);
     $statement->execute();
     $statement->closeCursor();
+    
     }
-	
-   # header('Location: ../index.html');
+
+    header('Location: ../create_recipe.php');
     exit;
 ?>
