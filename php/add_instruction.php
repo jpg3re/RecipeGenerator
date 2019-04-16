@@ -5,8 +5,8 @@
     if(isset( $_POST['submit'] )){
     $instruction=$_REQUEST['instruction_input'];
     $recipe_id=$_SESSION["recipe"];
+    
     $user=$_SESSION["user"];
-
     $_SESSION["instructions"][]=$instruction;
     $query ="INSERT INTO Instructions (instruction,recipe_id,user) VALUES (:instruction, :recipe_id,:user)";
 

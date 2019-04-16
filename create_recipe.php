@@ -1,7 +1,6 @@
 <!-- Jack Girerd jpg3re -->
 <?php
   session_start();
-  include('php/list.php');
 if (isset($_SESSION['recipe'])) {
   #$_SESSION['recipe'] = "Enter Recipe Name";
   #$_SESSION['user'] = "Enter username";
@@ -78,7 +77,7 @@ if (isset($_SESSION['recipe'])) {
                 <input class="form-control" id="ing" name="ing" placeholder="Ingredient" value="<?php echo $_SESSION['placeholder'];?>">
                 
                 </div>
-                <input class="btn btn-outline-secondary" type="submit" name="submit" />
+                <input class="btn btn-outline-secondary" value="Add" type="submit" name="submit" />
               </div>
           </form>
         </div>
@@ -103,7 +102,7 @@ if (isset($_SESSION['recipe'])) {
                 <div class="input-group-append">
                   <input name="instruction_input"type="text" class="form-control" placeholder="Instruction" value="<?php echo $_SESSION['placeholder'];?>">
 
-                  <input class="btn btn-outline-secondary" type="submit" name="submit" />
+                  <input class="btn btn-outline-secondary" value="Add" type="submit" name="submit" />
                 </div>
             </form>
             </div>
@@ -112,10 +111,12 @@ if (isset($_SESSION['recipe'])) {
 </div>
 <div class="container" > 
     <div class="row"> 
+    <div class="col">
       <form action="php/add_recipe.php" >
-        <input type="submit" name="submit"/>
-        <div class="col"> </div>
+        <input class="btn btn-outline-secondary" value="Submit Recipe" type="submit" name="submit"/>
+         
       </form>
+      </div>
     </div>
 </div>
 
