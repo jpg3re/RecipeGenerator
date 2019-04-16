@@ -14,6 +14,16 @@ if (isset($_SESSION['username'])) {
   $instruction_array=array();
   $_SESSION['instruction_data']=$instruction_array;
 }
+function load($type,$type1){
+  if($_SESSION['username']!=""){
+    $array=$_SESSION[$type][$_SESSION['recipe_id']];
+    for($i=0;$i<sizeof($array);$i++){
+      echo "<li class=list-group-item>";
+      echo $array[$i][$type1];
+      echo "</li>";
+    }
+  }
+}
 ?>
 <head>
 
@@ -45,9 +55,9 @@ if (isset($_SESSION['username'])) {
   <div class="container" > 
     <div class="row"> 
         <div class="col">
-        <form action="php/display_recipe.php" method="GET">
-            <input class="form-control" id="username" value="<?php echo $_SESSION['username'];?>" name="username" placeholder="Username">
-            <input class="btn btn-outline-secondary" type="submit" name="submit" />
+        <form action="php/display_recipe.php" method="post">
+            <input class="form-control" type="hidden" id="username" value="<?php echo $_COOKIE['user'];?>" name="username" placeholder="Username">
+            <input class="btn btn-outline-secondary" value="View Recipes for <?php echo $_COOKIE['user'];?>" type="submit" name="submit" />
         </form>
         <?php
         if($_SESSION['error_msg']){
@@ -72,16 +82,12 @@ if (isset($_SESSION['username'])) {
 
             echo "<li class=nav-item>";
             if($_SESSION['recipe_id']==$i){
-            #echo "<a class='nav-link active'>";
 
             echo "<input class='nav-link active' type='submit' name='submit' value='$label' />";
             }
             else{
-              #echo "<a class=nav-link>";
               echo "<input class='nav-link active' type='submit' name='submit' value='$label' />";
             }
-            #echo $array[$i][0]['recipe_id'];
-            #echo "</a>";
             echo "</li>";
             
             echo "</form>";
@@ -118,14 +124,7 @@ if (isset($_SESSION['username'])) {
     ?>
     <ol class="list-group" id="ingredients">
         <?php
-        if($_SESSION['username']!=""){
-            $array=$_SESSION['ingredient_data'][$_SESSION['recipe_id']];
-            for($i=0;$i<sizeof($array);$i++){
-              echo "<li class=list-group-item>";
-              echo $array[$i]['Ingredient'];
-              echo "</li>";
-            }
-          }
+        load('ingredient_data','Ingredient');
           ?>
     </ol>
     <?php
@@ -139,39 +138,51 @@ if (isset($_SESSION['username'])) {
     ?>
   <ol class="list-group" id="instructions">
           <?php
-          if($_SESSION['username']!=""){
-            $array=$_SESSION['instruction_data'][$_SESSION['recipe_id']];
-            for($i=0;$i<sizeof($array);$i++){
-              echo "<li class=list-group-item>";
-              echo $array[$i]['Instruction'];
-              echo "</li>";
-            }
-          }
+          load('instruction_data','Instruction');
           ?>
   </ol>
+
   </div>
   </div>
   </div>
   <br>
-  <div class="container" > 
+ <div class="container" > 
     <div class="row"> 
         <div class="col">
-          <h3>
-            Enter new Recipe Title
-          </h3>
-        <form action="php/edit_title.php" method="GET">
-            <input class="form-control" name="new_title" placeholder="New Recipe Title">
-            <input class="btn btn-outline-secondary" type="submit" name="submit" />
-        </form>
+        <?php
+          if($_SESSION['username']!=""){
+            if(!$_SESSION['error_msg']){
+
+              echo "<h3>";
+              echo "Enter new Recipe Title";
+              echo "</h3>";
+              echo "<form action='php/edit_title.php' method='GET'>";
+              echo "<input class='form-control' name='new_title' placeholder='New Recipe Title'>";
+              echo "<input class='btn btn-outline-secondary' type='submit' name='submit' />";
+              echo "</form>";
+            }
+          }
+          ?>
         </div>
         </div>
-  <!-- <div class="container" > 
-      <div class="row"> 
-          
-          <div class="col">
-              <button type="button" class="btn btn-primary btn-lg">Edit Recipe</button>
-          </div>
-          <div class="col"> </div>
+            </div>
+            <div class="container" > 
+    <div class="row"> 
+        <div class="col">
+        <?php
+          if($_SESSION['username']!=""){
+            if(!$_SESSION['error_msg']){
+
+              echo "<h3>";
+              echo "Click This button to delete Recipe";
+              echo "</h3>";
+              echo "<form action='php/delete_recipe.php' method='GET'>";
+              echo "<input class='btn btn-outline-secondary' type='submit' name='submit' />";
+              echo "</form>";
+            }
+          }
+          ?>
         </div>
-  </div> -->
-    <script src="js/my_recipes.js"></script>
+        </div>
+            </div>
+

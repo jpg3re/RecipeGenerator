@@ -10,7 +10,9 @@ if (isset($_SESSION['recipe'])) {
   $_SESSION['placeholder']="";
   $ingredient_array=array();
   $_SESSION['ingredients']=$ingredient_array;
-
+  $_SESSION['ingredient_error']=FALSE;
+  $_SESSION['instruction_error']=FALSE;
+  $_SESSION['recipe_error']=FALSE;
   $instruction_array=array();
   $_SESSION['instructions']=$instruction_array;
 
@@ -42,7 +44,7 @@ if (isset($_SESSION['recipe'])) {
       </ul>
     </div>
   </nav>
-  <h1 align="center">Create a New Recipe</h1>
+  <h1 align="center">Create a New Recipe for <?php echo $_COOKIE['user'];?></h1>
   <br>
   <div class="container">
     <div class="row">
@@ -52,16 +54,25 @@ if (isset($_SESSION['recipe'])) {
                 <h4>
                   Recipe Title:
                 </h4>
+                <?php
+                if($_SESSION['recipe_error']){
+                  echo "<h5 style='color:red;'>Please enter a Recipe Title </h5>";
+                }
+              ?>
                 <input class="form-control" id="title" name="title" placeholder="Recipe Title" value="<?php echo $_SESSION['recipe'];?>">
-                <h4>
-                    User:
-                </h4>
-                <input class="form-control" id="user" value="<?php echo $_SESSION['user'];?>" name="user" placeholder="Username">
+                <input class="form-control" type="hidden" id="user" value="<?php echo $_COOKIE['user'];?>" name="user" placeholder="Username">
+
 
               </div>
+              
               <h4>
                 Ingredients
               </h4>
+              <?php
+                if($_SESSION['ingredient_error']){
+                  echo "<h5 style='color:red;'>Please enter an ingredient </h5>";
+                }
+              ?>
               <ol class="list-group" id="ingredients">
                   <?php
                     $array=$_SESSION['ingredients'];
@@ -85,6 +96,11 @@ if (isset($_SESSION['recipe'])) {
             <h4>
                     Instructions
             </h4>
+            <?php
+                if($_SESSION['instruction_error']){
+                  echo "<h5 style='color:red;'>Please enter an instruction </h5>";
+                }
+              ?>
             <div class="list-group">
             <ol class="list-group" id="instructions">
                   <?php
